@@ -1,6 +1,6 @@
 ## Dependencies
 - PHP
-- Composer
+- Composer (and ```composer global require laravel/installer```)
 - Node.js
 - Any SQL Databse (SQLite, MySQL, MariaDB, etc.)
 

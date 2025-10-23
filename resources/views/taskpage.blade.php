@@ -19,12 +19,22 @@
             @csrf
             <button type="submit">Delete</button>
         </form>
+
+        <br>
+        <form action="{{ route('tasks.update', $task) }}" method="POST">
+            @method('PATCH')
+            @csrf
+            Name: <input name="name" value="{{ $task->name }}"></input>
+            Description: <input name="description" value="{{ $task->description}}"></input>
+            <button type="submit">Update</button>
+        </form>
+
     </div>
     <br>
     @endforeach
 
     <h4>Create New Task:</h4>
-     <form action="{{ route('tasks.create') }}" method="POST">
+    <form action="{{ route('tasks.create') }}" method="POST">
         @csrf
         Name: <input name="name"></input>
         Description: <input name="description"></input>

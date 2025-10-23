@@ -10,3 +10,4 @@ Route::get('/', function (){
 
 Route::post('/create', [TaskController::class, 'create'])->name('tasks.create');
 Route::delete('/delete/{task}', [TaskController::class, 'delete'])->name('tasks.delete');
+Route::patch('/update/{task}', [TaskController::class, 'update'])->name('tasks.update');

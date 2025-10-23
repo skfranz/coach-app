@@ -22,4 +22,14 @@ class TaskController extends Controller
         $task->delete();
         return redirect()->route('tasks.index');
     }
+
+    public function update(Request $request, Task $task) {
+        $data = $request->validate([
+                'name' => ['required'],
+                'description' => ['nullable'],
+            ]);
+
+        $task->update($data);
+        return redirect()->route('tasks.index');
+    }
 }

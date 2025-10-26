@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected $table = 'tasks';
+    protected $table = 'tasks'; // Assigns model to SQL table 'tasks'
 
-    protected $fillable = [
+    protected $fillable = [ // Determines which variables/columns are editable by the user
         'name',
         'description',
+        'complete_status'
     ];
 }

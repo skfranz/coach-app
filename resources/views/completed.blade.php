@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Task Page</title>
+    <title>Completed Tasks Page</title>
 </head>
 
 
 <body>
-    <h3>Tasks:</h3>
+    <h3>Completed Tasks:</h3>
 
     <!--Navigation Bar-->
     <nav style="display:flex; align-items:center; gap:10px;">
@@ -34,11 +34,11 @@
                     <button type="submit">Delete</button>
                 </form>
 
-                <!--Complete Form-->
+                <!--Undo Complete Form-->
                 <form action="{{ route('tasks.complete', $task) }}" method="POST">
                     @method('PATCH')
                     @csrf
-                    <button type="submit">Complete</button>
+                    <button type="submit">Undo Complete</button>
                 </form>
 
             </div><br>
@@ -55,16 +55,6 @@
         </div>
     <br>
     @endforeach
-
-    <h4>Create New Task:</h4>
-    
-    <!--Create New Task form-->
-    <form action="{{ route('tasks.create') }}" method="POST"> <!--Send create/post request to create route in web.php, which goes to create function in TaskController-->
-        @csrf
-        Name: <input name="name"></input>
-        Description: <input name="description"></input>
-        <button type="submit">Submit</button>
-    </form>
 
 </body>
 

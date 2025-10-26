@@ -9,12 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up(): void // Create SQL table 'tasks' and columns
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
+            $table->boolean('complete_status')->default(0);
             $table->timestamps();
         });
     }

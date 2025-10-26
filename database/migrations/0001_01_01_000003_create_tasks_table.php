@@ -9,9 +9,9 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void // Create SQL table 'tasks' and columns
+    public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) { // Create SQL table 'tasks' and columns
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();

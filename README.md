@@ -31,7 +31,7 @@ Run ```php artisan migrate``` or ```php artisan migrate:fresh``` to migrate the 
 Run ```php artisan serve``` to start the application server.
 
 ## Key Files
-- database/migrations/001_01_01_000003_create_tasks_table.php
+- database/migrations/0001_01_01_000003_create_tasks_table.php
 - app/Models/Task.php
 - app/Http/Controllers/TaskController.php
 - resources/views/taskpage.blade.php

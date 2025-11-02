@@ -15,8 +15,18 @@ class TaskController extends Controller
         $data = $request->validate([
                 'name' => ['required'],         // Name (from form) is required
                 'description' => ['nullable'],  // Description is optional
+                'difficulty' => ['required'],
             ]);
 
+        if ($data['difficulty'] == 'Easy') {
+            $data['coin_value'] = 50;
+        } elseif ($data['difficulty'] == 'Medium') {
+            $data['coin_value'] = 100;
+        } elseif ($data['difficulty'] == 'Hard') {
+            $data['coin_value'] = 150;
+        } elseif ($data['difficulty'] == 'Very Hard') {
+            $data['coin_value'] = 200;
+        }
         Task::create($data);    // If successful, create new item with form data
         return redirect()->route('tasks.index'); // Return to tasks page
     }
@@ -34,7 +44,18 @@ class TaskController extends Controller
         $data = $request->validate([
                 'name' => ['required'],         // Name is required
                 'description' => ['nullable'],  // Description is optional
+                'difficulty' => ['required'],
             ]);
+
+        if ($data['difficulty'] == 'Easy') {
+            $data['coin_value'] = 50;
+        } elseif ($data['difficulty'] == 'Medium') {
+            $data['coin_value'] = 100;
+        } elseif ($data['difficulty'] == 'Hard') {
+            $data['coin_value'] = 150;
+        } elseif ($data['difficulty'] == 'Very Hard') {
+            $data['coin_value'] = 200;
+        }
 
         $task->update($data); // If form has all required components, update data
         return back();  // Refresh/return back to page

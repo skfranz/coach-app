@@ -24,6 +24,8 @@
             
             <p style="font-weight: bold;">{{ $task->name }}</p> <!--Show Task Name-->
             <p>Description: {{ $task->description }}</p>        <!--Show Task Description-->
+            <p>Difficulty: {{ $task->difficulty }}</p>          <!--Show Task Difficulty-->
+            <p>Reward: {{ $task->coin_value }} Coins</p>        <!--Show Task Coin Value-->
 
             <div style="display:flex; align-items:center; gap:10px;">
 

@@ -7,7 +7,6 @@ use App\Models\Task;
 
 class TaskController extends Controller
 {
-
     // Creates a new task
     public function create(Request $request)
     {

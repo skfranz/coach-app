@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <title>Task Page</title>
-</head>
-
-
-<body>
-    <h3>Tasks:</h3>
-
-    <!--Navigation Bar-->
-    <nav style="display:flex; align-items:center; gap:10px;">
-        <a href="{{ route('tasks.index') }}">Tasks</a>
-        <a href="{{ route('completed.index') }}">Completed Tasks</a>
-    </nav>
-
-    <br>
+<x-layout title="Task Page" header="Tasks:">
 
     <!--Displays each task in its own div/box-->
     @foreach ($tasks as $task)
@@ -66,6 +48,4 @@
         <button type="submit">Submit</button>
     </form>
 
-</body>
-
-</html>
+</x-layout>

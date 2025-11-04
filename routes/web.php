@@ -16,9 +16,11 @@ Route::get('/completed', function (){
 })->name('completed.index');
 
 Route::post('/tasks/create', [TaskController::class, 'create'])->name('tasks.create'); // Post request link for creating a task, which routes it to the TaskController "create" function (and adds specific route name "tasks.create")
-Route::delete('/tasks/delete/{task}', [TaskController::class, 'delete'])->name('tasks.delete'); // Route to delete task
-Route::patch('/tasks/update/{task}', [TaskController::class, 'update'])->name('tasks.update'); // Route to update task
+Route::delete('/tasks/delete/{task}', [TaskController::class, 'delete'])->name('tasks.delete');
+Route::patch('/tasks/update/{task}', [TaskController::class, 'update'])->name('tasks.update');
 Route::patch('/tasks/complete/{task}', [TaskController::class, 'complete'])->name('tasks.complete'); // Route to complete/undo completing a task
+
+Route::patch('/tasks/detach/{task}/{tag}', [TaskController::class, 'detach'])->name('tasks.detach');
 
 Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
 Route::post('/tags/create', [TagController::class, 'create'])->name('tags.create');

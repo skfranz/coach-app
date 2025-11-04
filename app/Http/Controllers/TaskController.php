@@ -28,13 +28,14 @@ class TaskController extends Controller
             $data['coin_value'] = 200;
         }
         Task::create($data);    // If successful, create new item with form data
-        return redirect()->route('tasks.index'); // Return to tasks page
+        return redirect()->route('tasks.index') // Return to tasks page
+                         ->with('coach', "That's a {$data['difficulty']} one. Lock in!"); // tag with coach response
     }
 
     // Delete a task (Delete form submits $task object)
     public function delete(Task $task) {
         $task->delete();
-        return back();
+        return back()->with('coach', "Task deleted? Weak...");
     }
 
     // Update an existing task with new data
@@ -64,6 +65,6 @@ class TaskController extends Controller
     // Changes the Task's 'complete_status' - Used to complete a task or "undo" a completed task
     public function complete(Task $task) {
         $task->update(['complete_status' => !$task->complete_status]); // Update complete_status to the opposite of what it was
-        return back();
+        return back()->with('coach', $task->complete_status ? "Great job! I knew you had it in you." : "Wow..."); // msg for complete : for undo
     }
 }

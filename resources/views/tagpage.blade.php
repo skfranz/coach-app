@@ -21,8 +21,8 @@
                 </form>
             </div>
             
-            <p style="font-weight: bold;">{{ $tag->name }}</p> <!--Show tag Name-->
-            @isset($tag->description)<p>Description: {{ $tag->description }}</p>@endisset <!--Show tag Description (if there is one)-->
+            <p style="font-weight: bold;">{{ $tag->name }}</p> <!--Show Tag Name-->
+            @isset($tag->description)<p>Description: {{ $tag->description }}</p>@endisset <!--Show Tag Description (if there is one)-->
 
             @foreach ($tag->tasks as $task)
                 <div style="display: inline-block; border-style: solid; padding: 5px 5px; margin-bottom: 20px">
@@ -45,7 +45,7 @@
 
     <h4>Create New Tag:</h4>
     
-    <!--Create New tag form-->
+    <!--Create New Tag form-->
     <form action="{{ route('tags.create') }}" method="POST"> <!--Send create/post request to create route in web.php, which goes to create function in TagController-->
         @csrf
         Name: <input name="name"></input>

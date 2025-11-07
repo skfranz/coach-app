@@ -17,7 +17,10 @@ class TaskController extends Controller
                 'description' => ['nullable'],  // Description is optional
             ]);
 
-        Task::create($data);    // If successful, create new item with form data
+        $task = Task::create($data);    // If successful, create new item with form data
+        $tags = request('tags');        // Get tag ids from tag input box
+        $task->tags()->attach($tags);   // Attach tag ids to task-tag Eloquent relationship, updating pivot table task_tag
+
         return redirect()->route('tasks.index'); // Return to tasks page
     }
 

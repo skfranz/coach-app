@@ -8,16 +8,14 @@
 
 
 <body>
-    <h3>{{ $header }}</h3>
+    <h2>{{ $header }}</h2>
 
     <!--Navigation Bar-->
     <nav style="display:flex; align-items:center; gap:10px;">
-        <a href="{{ route('tasks.index') }}">Tasks</a>
-        <a href="{{ route('completed.index') }}">Completed Tasks</a>
+        <a href="{{ route('completed.index') }}">Completed</a>
         <a href="{{ route('tags.index') }}">Tags</a>
+        <a href="{{ route('tasks.index') }}">Tasks</a>
     </nav>
-
-    <br>
 
     {{ $slot }}
 

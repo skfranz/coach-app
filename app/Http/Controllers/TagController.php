@@ -10,7 +10,7 @@ class TagController extends Controller
     // Returns webpage with every tag (sorted by name)
     public function index()
     {
-        return view('tagpage', ['tags' => Tag::all()->sortBy('name')]);
+        return view('tagpage', ['tags' => Tag::where('complete_status', false)->get()]);
     }
 
     // Creates a new Tag

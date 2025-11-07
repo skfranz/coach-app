@@ -2,7 +2,7 @@
 
     <!--Displays each task in its own div/box-->
     @foreach ($tasks as $task)
-        <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-bottom: 20px">
+        <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-top: 20px">
 
             <div style="display:flex; float:right; margin-top: 10px; gap:10px;">
 
@@ -54,7 +54,7 @@
     <br>
     @endforeach
 
-    <h4>Create New Task:</h4> <!--Create Form-->
+    <br><h4>Create New Task:</h4> <!--Create Form-->
     <form action="{{ route('tasks.create') }}" method="POST"> <!--Send create/post request to create route in web.php, which goes to create function in TaskController-->
         @csrf
         Name: <input name="name"></input>

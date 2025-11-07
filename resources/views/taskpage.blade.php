@@ -40,8 +40,13 @@
             <form action="{{ route('tasks.update', $task) }}" method="POST">
                 @method('PATCH')
                 @csrf
-                Name: <input name="name" placeholder="{{ $task->name }}"></input>
-                Description: <input name="description" placeholder="{{ $task->description}}"></input>
+                Name: <input name="name" value="{{ $task->name }}"></input>
+                Description: <input name="description" value="{{ $task->description}}"></input>
+                <select name="tags[]" multiple> <!--Multi-select input needs [] in form name-->
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}" @selected($task->tags->find($tag))>{{ $tag->name }}</option> <!--If tag already exists, select it in box-->
+                    @endforeach
+                </select>
                 <button type="submit">Update</button>
             </form>
 

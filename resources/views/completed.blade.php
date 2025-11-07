@@ -52,12 +52,13 @@
             </form>
 
         </div>
-    <br>
+        <br>
     @endforeach
 
     <h4>Past Tags:</h4>
     <!--Displays each tag in its own div/box-->
     @foreach ($tags as $tag)
+        @if ($tag->complete_status == 1)
         <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-bottom: 20px">
             
             <div style="display:flex; float:right; margin-top: 10px; gap:10px;">
@@ -104,7 +105,8 @@
             </form>
 
         </div>
-    <br>
+        <br>
+        @endif
     @endforeach
 
 </x-layout>

@@ -41,8 +41,7 @@ class TaskController extends Controller
 
         $task->update($data); // If form has all required components, update data
         $tags = request('tags');        // Get tag ids from tag input box
-        $task->tags()->detach();        // Detach existing tags
-        $task->tags()->attach($tags);   // Attach tag ids to task-tag Eloquent relationship, updating pivot table task_tag
+        $task->tags()->syncWithoutDetaching($tags);   // Attach new tag ids to task-tag Eloquent relationship, updating pivot table task_tag
         return back();  // Refresh/return back to page
     }
 

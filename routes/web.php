@@ -29,3 +29,4 @@ Route::post('/tags/create', [TagController::class, 'create'])->name('tags.create
 Route::delete('/tags/delete/{tag}', [TagController::class, 'delete'])->name('tags.delete');
 Route::patch('/tags/update/{tag}', [TagController::class, 'update'])->name('tags.update');
 Route::patch('/tags/complete/{tag}', [TagController::class, 'complete'])->name('tags.complete');
+Route::patch('/tags/detach/{tag}/{task}', [TagController::class, 'detach'])->name('tags.detach');

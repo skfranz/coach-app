@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use App\Models\Task;
 
 class TagController extends Controller
 {
@@ -48,6 +49,12 @@ class TagController extends Controller
     // Changes the Tag's 'complete_status' - Used to complete a Tag or "undo" a completed Tag
     public function complete(Tag $tag) {
         $tag->update(['complete_status' => !$tag->complete_status]); // Update complete_status to the opposite of what it was
+        return back();
+    }
+
+    // Detach a specific task from a tag
+    public function detach(Tag $tag, Task $task) {
+        $tag->tasks()->detach($task);
         return back();
     }
 }

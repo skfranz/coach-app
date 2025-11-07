@@ -27,6 +27,7 @@
             @foreach ($task->tags as $tag)
                 <div style="display: inline-block; border-style: solid; padding: 5px 5px; margin-bottom: 20px">
                     <div style="display:flex; gap: 5px;"> {{ $tag->name }}
+                        <!--Detach a tag from a task-->
                         <form action="{{ route('tasks.detach', [$task, $tag]) }}" method="POST">
                             @method('PATCH')
                             @csrf

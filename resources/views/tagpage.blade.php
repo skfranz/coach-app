@@ -57,11 +57,6 @@
         @csrf
         Name: <input name="name"></input>
         Description: <input name="description"></input>
-        <select name="tasks[]" multiple> <!--Multi-select input needs [] in form name-->
-            @foreach ($tasks as $tag)
-                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-            @endforeach
-        </select>
         <button type="submit">Submit</button>
     </form>
 

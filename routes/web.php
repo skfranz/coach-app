@@ -17,7 +17,9 @@ Route::get('/completed', function (){
 })->name('completed.index');
 
 // Show all (incompleted) tags
-Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
+Route::get('/tags',  function() {
+    return view('tagpage', ['tags' => Tag::where('complete_status', false)->get(), 'tasks' => Tag::where('complete_status', false)->get()]);
+})->name('tags.index');
 
 Route::post('/tasks/create', [TaskController::class, 'create'])->name('tasks.create'); // Post request link for creating a task, which routes it to the TaskController "create" function (and adds specific route name "tasks.create")
 Route::delete('/tasks/delete/{task}', [TaskController::class, 'delete'])->name('tasks.delete');

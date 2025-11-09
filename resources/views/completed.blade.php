@@ -43,6 +43,7 @@
   .hidden { display: none; }
 </style>
 
+    <h4>Past Tasks:</h4>
     <!--Displays each task in its own div/box-->
     @foreach ($tasks as $task)
         <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-bottom: 20px">

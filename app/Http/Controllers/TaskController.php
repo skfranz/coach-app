@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Tag;
 
 class TaskController extends Controller
 {
-
     // Creates a new task
     public function create(Request $request)
     {
@@ -28,6 +28,9 @@ class TaskController extends Controller
             $data['coin_value'] = 200;
         }
         Task::create($data);    // If successful, create new item with form data
+        $tags = request('tags');        // Get tag ids from tag input box
+        $task->tags()->attach($tags);   // Attach tag ids to task-tag Eloquent relationship, updating pivot table task_tag
+
         return redirect()->route('tasks.index') // Return to tasks page
                          ->with('coach', "That's a {$data['difficulty']} one. Lock in!"); // tag with coach response
     }
@@ -59,6 +62,8 @@ class TaskController extends Controller
         }
 
         $task->update($data); // If form has all required components, update data
+        $tags = request('tags');        // Get tag ids from tag input box
+        $task->tags()->syncWithoutDetaching($tags);   // Attach new tag ids to task-tag Eloquent relationship, updating pivot table task_tag
         return back();  // Refresh/return back to page
     }
 
@@ -66,5 +71,11 @@ class TaskController extends Controller
     public function complete(Task $task) {
         $task->update(['complete_status' => !$task->complete_status]); // Update complete_status to the opposite of what it was
         return back()->with('coach', $task->complete_status ? "Great job! I knew you had it in you." : "Wow..."); // msg for complete : for undo
+    }
+
+    // Detach a specific tag from a task
+    public function detach(Task $task, Tag $tag) {
+        $task->tags()->detach($tag);
+        return back();
     }
 }

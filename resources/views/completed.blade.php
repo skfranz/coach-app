@@ -1,6 +1,48 @@
 <x-layout title="Completed Tasks/Tags Page" header="Completed Tasks/Tags:">
 
-    <h4>Completed Tasks:</h4>
+<style>
+  /* Coach fixed top-right */
+  #coach {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Speech bubble under coach */
+  #coach-bubble {
+    background: #fff;
+    border: 2px solid #444;
+    border-radius: 12px;
+    padding: 10px 14px;
+    max-width: 444px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    text-align: center;
+    font-family: system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.3;
+    position: relative;
+  }
+
+  /* Little tail pointing upward to coach */
+  #coach-bubble::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 8px 8px 8px;
+    border-style: solid;
+    border-color: transparent transparent #444 transparent;
+  }
+
+  .hidden { display: none; }
+</style>
+
     <!--Displays each task in its own div/box-->
     @foreach ($tasks as $task)
         <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-bottom: 20px">
@@ -62,6 +104,11 @@
         <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-bottom: 20px">
             
             <div style="display:flex; float:right; margin-top: 10px; gap:10px;">
+        
+                <p style="font-weight: bold;">{{ $task->name }}</p> <!--Show Task Name-->
+                <p>Description: {{ $task->description }}</p>        <!--Show Task Description-->
+                <p>Difficulty: {{ $task->difficulty }}</p>          <!--Show Task Difficulty-->
+                <p>Reward: {{ $task->coin_value }} Coins</p>        <!--Show Task Coin Value-->
 
                 <!--Delete Form-->
                 <form action="{{ route('tags.delete', $tag) }}" method="POST"> <!--Send delete request to delete route in web.php, which goes to delete function in TagController-->
@@ -109,4 +156,26 @@
         @endif
     @endforeach
 
+    <!--Create a div for the coach window-->
+    <div style="position: fixed; top: 20px; right: 20px;"> <!--Fix this div in the top right of the screen-->
+        <img src="{{ asset('images/goat.jpg') }}" alt="Coach" width="444">
+        <div id="coach-bubble" class="hidden">Hello there! Ready to work?</div>
+    </div>
+
+    <script> 
+        // display a message below the coach for an interval (default 4s)
+        function coachMessage(text, ms = 4000) {
+            const bubble = document.getElementById('coach-bubble');
+            // if (!bubble) return;
+            bubble.textContent = text;
+            bubble.classList.remove('hidden');
+            // clearTimeout(window.__coachHideTimer);
+            // window.__coachHideTimer = setTimeout(() => bubble.classList.add('hidden'), ms);
+        }
+
+        // call coachMessage if the page reloaded with a coach msg
+        const msg = @json(session('coach'));
+        if (msg) coachMessage(msg);
+    </script>
+    
 </x-layout>

@@ -11,6 +11,8 @@ class Task extends Model
     protected $fillable = [ // Determines which variables/columns are editable by the user
         'name',
         'description',
+        'difficulty',
+        'coin_value',
         'complete_status'
     ];
 

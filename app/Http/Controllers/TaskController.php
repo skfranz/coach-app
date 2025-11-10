@@ -16,6 +16,7 @@ class TaskController extends Controller
                 'name' => ['required'],         // Name (from form) is required
                 'description' => ['nullable'],  // Description is optional
                 'difficulty' => ['required'],
+                'repeats' => ['nullable']
             ]);
 
         if ($data['difficulty'] == 'Easy') {
@@ -49,6 +50,7 @@ class TaskController extends Controller
                 'name' => ['required'],         // Name is required
                 'description' => ['nullable'],  // Description is optional
                 'difficulty' => ['required'],
+                'repeats' => ['nullable']
             ]);
 
         if ($data['difficulty'] == 'Easy') {

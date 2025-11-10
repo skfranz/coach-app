@@ -97,6 +97,10 @@
                     <option value="Hard">Hard</option>
                     <option value="Very Hard">Very Hard</option>
                 </select>
+                Repeats: <select name="repeats">
+                    <option value="0" @selected($task->repeats == 0)>No</option>
+                    <option value="1" @selected($task->repeats == 1)>Yes</option>
+                </select>
                 <button type="submit">Update</button>
             </form>
 
@@ -120,6 +124,10 @@
             <option value="Medium">Medium</option>
             <option value="Hard">Hard</option>
             <option value="Very Hard">Very Hard</option>
+        </select>
+        Repeats: <select name="repeats">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
         </select>
         <button type="submit">Submit</button>
     </form>

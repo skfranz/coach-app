@@ -5,6 +5,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TagController;
 use App\Models\Task;
 use App\Models\Tag;
+use App\Models\Cosmetic;
 
 // Returns webpage with all tasks (that haven't been completed)
 Route::get('/', function (){

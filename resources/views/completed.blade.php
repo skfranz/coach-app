@@ -177,6 +177,22 @@
         // call coachMessage if the page reloaded with a coach msg
         const msg = @json(session('coach'));
         if (msg) coachMessage(msg);
+
+        function idleMessage() {
+            console.log("Coach idle msg now");
+            const lines = [
+                "What are you waiting for?",
+                "Seize the day!",
+                "I sure hope you're working on those tasks.",
+                "Don't put the pro in procrastination.",
+                "Task 1. Hurry up!"
+            ]
+            coachMessage(lines[Math.floor(Math.random() * lines.length)]);
+        }
+
+        setInterval(() => {
+            idleMessage();
+        }, 20000);
     </script>
     
 </x-layout>

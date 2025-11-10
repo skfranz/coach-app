@@ -13,7 +13,8 @@ class Task extends Model
         'description',
         'difficulty',
         'coin_value',
-        'complete_status'
+        'complete_status',
+        'repeats'
     ];
 
     // Tasks have a many-to-many relationship with tags

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('difficulty');
             $table->integer('coin_value');
             $table->boolean('complete_status')->default(0);
+            $table->boolean('repeats')->default(0);
             $table->timestamps();
         });
     }

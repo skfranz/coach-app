@@ -91,6 +91,16 @@
                         <option value="{{ $tag->id }}" @selected($task->tags->find($tag))>{{ $tag->name }}</option> <!--If tag already exists, select it in box-->
                     @endforeach
                 </select>
+                Difficulty: <select name="difficulty">
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                    <option value="Very Hard">Very Hard</option>
+                </select>
+                Repeats: <select name="repeats">
+                    <option value="0" @selected($task->repeats == 0)>No</option>
+                    <option value="1" @selected($task->repeats == 1)>Yes</option>
+                </select>
                 <button type="submit">Update</button>
             </form>
 
@@ -105,11 +115,6 @@
         <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-bottom: 20px">
             
             <div style="display:flex; float:right; margin-top: 10px; gap:10px;">
-        
-                <p style="font-weight: bold;">{{ $task->name }}</p> <!--Show Task Name-->
-                <p>Description: {{ $task->description }}</p>        <!--Show Task Description-->
-                <p>Difficulty: {{ $task->difficulty }}</p>          <!--Show Task Difficulty-->
-                <p>Reward: {{ $task->coin_value }} Coins</p>        <!--Show Task Coin Value-->
 
                 <!--Delete Form-->
                 <form action="{{ route('tags.delete', $tag) }}" method="POST"> <!--Send delete request to delete route in web.php, which goes to delete function in TagController-->

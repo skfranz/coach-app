@@ -135,7 +135,7 @@
     <!--Create a div for the coach window-->
     <div style="position: fixed; top: 20px; right: 20px;"> <!--Fix this div in the top right of the screen-->
         <img src="{{ asset('images/goat.jpg') }}" alt="Coach" width="444">
-        <div id="coach-bubble" class="hidden">Hello there! Ready to work?</div>
+        <div id="coach-bubble" class="hidden" width="444">Hello there! Ready to work?</div>
     </div>
 
     <script> 
@@ -145,13 +145,30 @@
             // if (!bubble) return;
             bubble.textContent = text;
             bubble.classList.remove('hidden');
-            // clearTimeout(window.__coachHideTimer);
-            // window.__coachHideTimer = setTimeout(() => bubble.classList.add('hidden'), ms);
+            clearTimeout(window.__coachHideTimer);
+            window.__coachHideTimer = setTimeout(() => bubble.classList.add('hidden'), ms);
         }
 
         // call coachMessage if the page reloaded with a coach msg
         const msg = @json(session('coach'));
         if (msg) coachMessage(msg);
+
+        function idleMessage() {
+            console.log("Coach idle msg now");
+            const lines = [
+                "What are you waiting for?",
+                "Seize the day!",
+                "I sure hope you're working on those tasks.",
+                "Don't put the pro in procrastination.",
+                "Task 1. Hurry up!"
+            ]
+            coachMessage(lines[Math.floor(Math.random() * lines.length)], 5);
+        }
+
+        setInterval(() => {
+            idleMessage();
+        }, 20000);
+
     </script>
     
 </x-layout>

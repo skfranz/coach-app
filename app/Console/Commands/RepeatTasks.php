@@ -31,12 +31,9 @@ class RepeatTasks extends Command
             $newTask = $task->replicate();
             $newTask->created_at = now();
             $newTask->updated_at = now();
-            if ($task->complete_status == 0) {
-                $task->delete();
-            }
+            $task->delete();
             $newTask->complete_status = 0;
             $newTask->save();
         }
-        return 0;
     }
 }

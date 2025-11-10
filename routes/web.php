@@ -21,6 +21,31 @@ Route::get('/tags',  function() {
     return view('tagpage', ['tags' => Tag::where('complete_status', false)->get(), 'tasks' => Tag::where('complete_status', false)->get()]);
 })->name('tags.index');
 
+// Returns shop main page
+Route::get('/shoppage', function () {
+    return view('shoppage');
+})->name('shoppage.index');
+
+// Returns font shop page with all font cosmetics
+Route::get('/fontshop', function () {
+    return view('fontshop', ['cosmetics' => Cosmetic::where('type', 'font')->get()]);
+})->name('fontshop.index');
+
+// Returns text color shop page with all text color cosmetics
+Route::get('/textcolorshop', function () {
+    return view('textcolorshop', ['cosmetics' => Cosmetic::where('type', 'textcolor')->get()]);
+})->name('textcolorshop.index');
+
+// Returns background shop page with all background cosmetics
+Route::get('/backgroundshop', function () {
+    return view('backgroundshop', ['cosmetics' => Cosmetic::where('type', 'background')->get()]);
+})->name('backgroundshop.index');
+
+// Returns coach shop page with all coach cosmetics
+Route::get('/coachshop', function () {
+    return view('coachshop', ['cosmetics' => Cosmetic::where('type', 'coach')->get()]);
+})->name('coachshop.index');
+
 Route::post('/tasks/create', [TaskController::class, 'create'])->name('tasks.create'); // Post request link for creating a task, which routes it to the TaskController "create" function (and adds specific route name "tasks.create")
 Route::delete('/tasks/delete/{task}', [TaskController::class, 'delete'])->name('tasks.delete');
 Route::patch('/tasks/update/{task}', [TaskController::class, 'update'])->name('tasks.update');

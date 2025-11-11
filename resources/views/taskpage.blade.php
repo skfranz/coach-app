@@ -46,7 +46,7 @@
     <!--Displays each task in its own div/box-->
     @foreach ($tasks as $task)
         <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-top: 20px">
-        
+
             <div style="display:flex; float:right; margin-top: 10px; gap:10px;">
 
                 <form action="{{ route('tasks.delete', $task) }}" method="POST"> <!--Send delete request to delete route in web.php, which goes to delete function in TaskController-->
@@ -62,9 +62,37 @@
                     <button type="submit">Complete</button>
                 </form>
             </div>
-            
+
             <p style="font-weight: bold;">{{ $task->name }}</p>
             @isset($task->description)<p>Description: {{ $task->description }}</p>@endisset <!--Show Task Description (if there is one)-->
+
+            <!--Show subtasks-->
+            <ul>
+            @foreach ($task->subtasks as $subtask)
+                <li>
+                    <form action="{{ route('tasks.subtasks.update', [$task, $subtask]) }}" method="POST">
+                        @csrf <!-- Cross-Site Request Forgery, not sure if necessary -->
+                        @method('PATCH')
+                        <input type="checkbox" name="complete_status" value="1"
+                            onchange="this.form.submit()" {{ $subtask->complete_status ? 'checked' : '' }}>
+                        {{ $subtask->description }}
+                    </form>
+                    <form action="{{ route('tasks.subtasks.destroy', [$task, $subtask]) }}" method="POST" style="display:inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">delete</button>
+                    </form>
+                </li>
+            @endforeach
+            </ul>
+
+            <!-- Add a subtask to your task -->
+            <form action="{{ route('tasks.subtasks.store', $task) }}" method="POST">
+                @csrf
+                <input type="text" name="description" placeholder="new subtask" required>
+                <button type="submit">add</button>
+            </form>
+
 
             <!--Show Associated Tags-->
             @foreach ($task->tags as $tag)
@@ -138,7 +166,20 @@
         <div id="coach-bubble" class="hidden" width="444">Hello there! Ready to work?</div>
     </div>
 
-    <script> 
+    <!--
+    Error handling, addresses a lot of the errors thrown by trying to POST/submit
+    -->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <script>
         // display a message below the coach for an interval (default 4s)
         function coachMessage(text, ms = 4000) {
             const bubble = document.getElementById('coach-bubble');
@@ -170,5 +211,5 @@
         }, 20000);
 
     </script>
-    
+
 </x-layout>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\SubtaskController;
 use App\Models\Task;
 use App\Models\Tag;
 use App\Models\Cosmetic;
@@ -46,6 +47,8 @@ Route::get('/backgroundshop', function () {
 Route::get('/coachshop', function () {
     return view('coachshop', ['cosmetics' => Cosmetic::where('type', 'coach')->get()]);
 })->name('coachshop.index');
+
+Route::resource('tasks.subtasks', SubtaskController::class);
 
 Route::post('/tasks/create', [TaskController::class, 'create'])->name('tasks.create'); // Post request link for creating a task, which routes it to the TaskController "create" function (and adds specific route name "tasks.create")
 Route::delete('/tasks/delete/{task}', [TaskController::class, 'delete'])->name('tasks.delete');

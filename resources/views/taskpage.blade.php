@@ -158,6 +158,19 @@
         <div id="coach-bubble" class="hidden">Hello there! Ready to work?</div>
     </div>
 
+    <!--
+    Error handling, addresses a lot of the errors thrown by trying to POST/submit
+    -->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <script>
         // display a message below the coach for an interval (default 4s)
         function coachMessage(text, ms = 4000) {

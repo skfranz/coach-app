@@ -13,4 +13,10 @@ class Tag extends Model
         'description',
         'complete_status'
     ];
+
+    // Tags have a many-to-many relationship with tasks
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class, 'task_tag', 'tag_id', 'task_id');
+    }
 }

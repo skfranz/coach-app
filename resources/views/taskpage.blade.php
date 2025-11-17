@@ -59,7 +59,7 @@
             @endforeach
 
             <!-- Add a subtask to your task -->
-            <form action="{{ route('tasks.subtasks.store', $task) }}" method="POST" style="margin-top: 40px; margin-bottom: -50px">
+            <form action="{{ route('tasks.subtasks.store', $task) }}" method="POST">
                 @csrf
                 <input type="text" name="description" placeholder="New Subtask" required>
                 <button type="submit">Add</button>

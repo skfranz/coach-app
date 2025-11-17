@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         //'email',
         //'password',
-        'coins',
+        'total_coins',
         'current_background'
     ];
 

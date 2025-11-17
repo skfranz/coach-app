@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('coins')->default(0);
+            $table->unsignedBigInteger('total_coins')->default(0);
             $table->string('current_background')->nullable();
             //$table->string('email')->unique();
             //$table->timestamp('email_verified_at')->nullable();
@@ -26,7 +26,7 @@ return new class extends Migration
 
         User::firstOrCreate([       // Create a default user/gamestate
             'name' => 'default',
-            'coins' => '0',
+            'total_coins' => 0,
         ]);
             
         Schema::create('password_reset_tokens', function (Blueprint $table) {

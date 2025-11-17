@@ -13,9 +13,9 @@
     <!--Navigation Bar-->
     <nav style="display:flex; align-items:center; gap:10px;">
         <a href="{{ route('completed.index') }}">Completed</a>
+        <a href="{{ route('shop.index') }}">Shop</a>
         <a href="{{ route('tags.index') }}">Tags</a>
         <a href="{{ route('tasks.index') }}">Tasks</a>
-        <a href="{{ route('shop.index') }}">Shop</a>
     </nav>
 
     {{ $slot }}

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Tag;
 use App\Services\CoachService;
+use App\Models\User;
 
 class TaskController extends Controller
 {
@@ -96,6 +97,9 @@ class TaskController extends Controller
     // Changes the Task's 'complete_status' - Used to complete a task or "undo" a completed task
     public function complete(Task $task) {
         $task->update(['complete_status' => !$task->complete_status]); // Update complete_status to the opposite of what it was
+
+        $user = User::find(1); // When multiple users are implemented, use user->auth()
+        $user->update(['total_coins' => $user->total_coins += $task->coin_value]); // When completing a task, add voins to user value
 
         $action = $task->complete_status ? "completing_task" : "uncompleting_task"; // determine whether the task is being completed or undone
         $line = $this->coachLine($action, $task);

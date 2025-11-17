@@ -65,11 +65,11 @@
 
             <p style="font-weight: bold;">{{ $task->name }}</p>
             @isset($task->description)<p>Description: {{ $task->description }}</p>@endisset <!--Show Task Description (if there is one)-->
+            <p>Difficulty: {{ $task->difficulty }} ({{ $task->coin_value }})</p>
 
             <!--Show subtasks-->
-            <ul>
             @foreach ($task->subtasks as $subtask)
-                <li>
+                <div style="display:flex; gap: 10px;">
                     <form action="{{ route('tasks.subtasks.update', [$task, $subtask]) }}" method="POST">
                         @csrf <!-- Cross-Site Request Forgery, not sure if necessary -->
                         @method('PATCH')
@@ -80,19 +80,17 @@
                     <form action="{{ route('tasks.subtasks.destroy', [$task, $subtask]) }}" method="POST" style="display:inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit">delete</button>
+                        <button type="submit">X</button>
                     </form>
-                </li>
+                </div>
             @endforeach
-            </ul>
 
             <!-- Add a subtask to your task -->
-            <form action="{{ route('tasks.subtasks.store', $task) }}" method="POST">
+            <form action="{{ route('tasks.subtasks.store', $task) }}" method="POST" style="margin-top: 40px; margin-bottom: -40px">
                 @csrf
-                <input type="text" name="description" placeholder="new subtask" required>
-                <button type="submit">add</button>
+                <input type="text" name="description" placeholder="New Subtask" required>
+                <button type="submit">Add</button>
             </form>
-
 
             <!--Show Associated Tags-->
             @foreach ($task->tags as $tag)

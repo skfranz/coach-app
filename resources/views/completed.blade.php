@@ -66,6 +66,25 @@
             
             <p style="font-weight: bold;">{{ $task->name }}</p>
             @isset($task->description)<p>Description: {{ $task->description }}</p>@endisset <!--Show Task Description (if there is one)-->
+            <p>Difficulty: {{ $task->difficulty }} ({{ $task->coin_value }})</p>
+
+            <!--Show subtasks-->
+            @foreach ($task->subtasks as $subtask)
+                <div style="display:flex; gap: 10px;">
+                    <form action="{{ route('tasks.subtasks.update', [$task, $subtask]) }}" method="POST">
+                        @csrf <!-- Cross-Site Request Forgery, not sure if necessary -->
+                        @method('PATCH')
+                        <input type="checkbox" name="complete_status" value="1"
+                            onchange="this.form.submit()" {{ $subtask->complete_status ? 'checked' : '' }}>
+                        {{ $subtask->description }}
+                    </form>
+                    <form action="{{ route('tasks.subtasks.destroy', [$task, $subtask]) }}" method="POST" style="display:inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">X</button>
+                    </form>
+                </div>
+            @endforeach
 
             <!--Show Associated Tags-->
             @foreach ($task->tags as $tag)
@@ -133,6 +152,13 @@
             
             <p style="font-weight: bold;">{{ $tag->name }}</p> <!--Show Tag Name-->
             @isset($tag->description)<p>Description: {{ $tag->description }}</p>@endisset <!--Show Tag Description (if there is one)-->
+            
+            <!-- Add a subtask to your task -->
+            <form action="{{ route('tasks.subtasks.store', $task) }}" method="POST" style="margin-top: 40px; margin-bottom: -40px">
+                @csrf
+                <input type="text" name="description" placeholder="New Subtask" required>
+                <button type="submit">Add</button>
+            </form>
 
             <!--Show Associated Tasks-->
             @foreach ($tag->tasks as $task)

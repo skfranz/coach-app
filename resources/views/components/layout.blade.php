@@ -9,6 +9,7 @@
 
 <body>
     <h2>{{ $header }}</h2>
+    <p>{{ App\Models\User::find(1)->total_coins }} coins</p>
 
     <!--Navigation Bar-->
     <nav style="display:flex; align-items:center; gap:10px;">

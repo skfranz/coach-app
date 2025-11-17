@@ -70,7 +70,7 @@
 
             <!--Show subtasks-->
             @foreach ($task->subtasks as $subtask)
-                <div style="display:flex; gap: 10px;>
+                <div style="display:flex; gap: 10px;">
                     <form action="{{ route('tasks.subtasks.update', [$task, $subtask]) }}" method="POST">
                         @csrf <!-- Cross-Site Request Forgery, not sure if necessary -->
                         @method('PATCH')

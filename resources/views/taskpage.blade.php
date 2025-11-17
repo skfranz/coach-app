@@ -1,48 +1,5 @@
 <x-layout title="Task Page" header="Tasks:">
 
-<style>
-  /* Coach fixed top-right */
-  #coach {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  /* Speech bubble under coach */
-  #coach-bubble {
-    background: #fff;
-    border: 2px solid #444;
-    border-radius: 12px;
-    padding: 10px 14px;
-    max-width: 444px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    text-align: center;
-    font-family: system-ui, sans-serif;
-    font-size: 18px;
-    line-height: 1.3;
-    position: relative;
-  }
-
-  /* Bubble tail */
-  #coach-bubble::before {
-    content: "";
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 0 8px 8px 8px;
-    border-style: solid;
-    border-color: transparent transparent #444 transparent;
-  }
-
-  .hidden { display: none; }
-</style>
-
     <!--Displays each task in its own div/box-->
     @foreach ($tasks as $task)
         <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-top: 20px">
@@ -65,7 +22,7 @@
 
             <p style="font-weight: bold;">{{ $task->name }}</p>
             @isset($task->description)<p>Description: {{ $task->description }}</p>@endisset <!--Show Task Description (if there is one)-->
-            <p>Difficulty: {{ $task->difficulty }} ({{ $task->coin_value }})</p>
+            <p>Difficulty: {{ $task->difficulty }} ({{ $task->coin_value }} coins)</p>
 
             <!--Show subtasks-->
             @foreach ($task->subtasks as $subtask)
@@ -158,12 +115,6 @@
         <button type="submit">Submit</button>
     </form>
 
-    <!--Create a div for the coach window-->
-    <div style="position: fixed; top: 20px; right: 20px;"> <!--Fix this div in the top right of the screen-->
-        <img src="{{ asset('images/goat.jpg') }}" alt="Coach" width="444">
-        <div id="coach-bubble" class="hidden" width="444">Hello there! Ready to work?</div>
-    </div>
-
     <!--
     Error handling, addresses a lot of the errors thrown by trying to POST/submit
     -->
@@ -176,38 +127,5 @@
             </ul>
         </div>
     @endif
-
-    <script>
-        // display a message below the coach for an interval (default 4s)
-        function coachMessage(text, ms = 4000) {
-            const bubble = document.getElementById('coach-bubble');
-            // if (!bubble) return;
-            bubble.textContent = text;
-            bubble.classList.remove('hidden');
-            clearTimeout(window.__coachHideTimer);
-            window.__coachHideTimer = setTimeout(() => bubble.classList.add('hidden'), ms);
-        }
-
-        // call coachMessage if the page reloaded with a coach msg
-        const msg = @json(session('coach'));
-        if (msg) coachMessage(msg);
-
-        function idleMessage() {
-            console.log("Coach idle msg now");
-            const lines = [
-                "What are you waiting for?",
-                "Seize the day!",
-                "I sure hope you're working on those tasks.",
-                "Don't put the pro in procrastination.",
-                "Task 1. Hurry up!"
-            ]
-            coachMessage(lines[Math.floor(Math.random() * lines.length)], 5);
-        }
-
-        setInterval(() => {
-            idleMessage();
-        }, 20000);
-
-    </script>
 
 </x-layout>

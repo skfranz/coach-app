@@ -66,7 +66,7 @@
             
             <p style="font-weight: bold;">{{ $task->name }}</p>
             @isset($task->description)<p>Description: {{ $task->description }}</p>@endisset <!--Show Task Description (if there is one)-->
-            <p>Difficulty: {{ $task->difficulty }} ({{ $task->coin_value }})</p>
+            <p>Difficulty: {{ $task->difficulty }} ({{ $task->coin_value }} coins)</p>
 
             <!--Show subtasks-->
             @foreach ($task->subtasks as $subtask)

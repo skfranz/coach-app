@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('coins')->default(0);
             $table->string('current_background')->nullable();
-            // TODO/FUTURE IMPLEMENTATION: Separate users/Authentication
             //$table->string('email')->unique();
             //$table->timestamp('email_verified_at')->nullable();
             //$table->string('password');
@@ -30,8 +29,6 @@ return new class extends Migration
             'coins' => '0',
         ]);
             
-        /*
-        TODO/FUTURE IMPLEMENTATION: Separate users/Authentication
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
@@ -46,7 +43,6 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
-        */
     }
 
     /**

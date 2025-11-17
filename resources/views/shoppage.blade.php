@@ -1,3 +1,2 @@
-<x-shoplayout>
-    <h4>Currently viewing shop main page</h4>
-</x-shoplayout>
+<x-layout title="Shop Page" header="Shop:">
+</x-layout>

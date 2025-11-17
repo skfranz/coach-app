@@ -15,7 +15,7 @@
         <a href="{{ route('completed.index') }}">Completed</a>
         <a href="{{ route('tags.index') }}">Tags</a>
         <a href="{{ route('tasks.index') }}">Tasks</a>
-        <a href="{{ route('shoppage.index') }}">Shop</a>
+        <a href="{{ route('shop.index') }}">Shop</a>
     </nav>
 
     {{ $slot }}

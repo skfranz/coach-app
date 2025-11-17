@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cosmetics', function (Blueprint $table) { // Create SQL table 'tasks' and columns
+        Schema::create('cosmetics', function (Blueprint $table) { // Create SQL table 'cosmetics' and columns
             $table->id();
             $table->string('name');
             $table->string('type');
             $table->string('description')->nullable();
-            $table->boolean('purchaseable')->default(1);
+            $table->boolean('purchased_status')->default(0);
             $table->integer('price');
             $table->timestamps();
         });

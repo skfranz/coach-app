@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
+            $table->string('difficulty');
+            $table->integer('coin_value');
             $table->boolean('complete_status')->default(0);
+            $table->boolean('repeats')->default(0);
             $table->timestamps();
         });
     }

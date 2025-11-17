@@ -26,7 +26,7 @@
 
             <!--Show subtasks-->
             @foreach ($task->subtasks as $subtask)
-                <div style="display:flex; gap: 10px;">
+                <div style="display:flex; gap: 10px;>
                     <form action="{{ route('tasks.subtasks.update', [$task, $subtask]) }}" method="POST">
                         @csrf <!-- Cross-Site Request Forgery, not sure if necessary -->
                         @method('PATCH')
@@ -42,13 +42,8 @@
                 </div>
             @endforeach
 
-            <!-- Add a subtask to your task -->
-            <form action="{{ route('tasks.subtasks.store', $task) }}" method="POST" style="margin-top: 40px; margin-bottom: -40px">
-                @csrf
-                <input type="text" name="description" placeholder="New Subtask" required>
-                <button type="submit">Add</button>
-            </form>
-
+            <br>
+            
             <!--Show Associated Tags-->
             @foreach ($task->tags as $tag)
                 <div style="display: inline-block; border-style: solid; padding: 5px 5px; margin-bottom: 20px">
@@ -62,6 +57,13 @@
                     </div>
                 </div>
             @endforeach
+
+            <!-- Add a subtask to your task -->
+            <form action="{{ route('tasks.subtasks.store', $task) }}" method="POST" style="margin-top: 40px; margin-bottom: -50px">
+                @csrf
+                <input type="text" name="description" placeholder="New Subtask" required>
+                <button type="submit">Add</button>
+            </form>
 
             <!--Update Form-->
             <form action="{{ route('tasks.update', $task) }}" method="POST">

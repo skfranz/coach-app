@@ -25,7 +25,7 @@ Route::get('/tags',  function() {
 
 // Returns shop main page
 Route::get('/shop', function () {
-    return view('shoppage', ['cosmetics' => Cosmetic::where('type', 'background')->get()]);
+    return view('shoppage', ['cosmetics' => Cosmetic::all()]);
 })->name('shop.index');
 
 Route::resource('tasks.subtasks', SubtaskController::class);

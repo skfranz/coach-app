@@ -8,7 +8,11 @@ class Cosmetic extends Model
 {
     protected $table = 'cosmetics'; // Assigns model to SQL table 'cosmetics'
 
-    protected $fillable = [ // Determines which variables/columns are editable by the user
-        'purchaseable',
+    protected $fillable = [ // Determines which variables/columns are creatable
+        'name',
+        'type',
+        'description',
+        'price',
+        'purchased_status',
     ];
 }

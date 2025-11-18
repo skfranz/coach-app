@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Cosmetic;
 
 return new class extends Migration
 {
@@ -16,10 +17,16 @@ return new class extends Migration
             $table->string('name');
             $table->string('type');
             $table->string('description')->nullable();
-            $table->boolean('purchased_status')->default(0);
             $table->integer('price');
+            $table->boolean('purchased_status')->default(0);
             $table->timestamps();
         });
+
+        Cosmetic::create([
+            'name' => 'red',
+            'type' => 'background',
+            'price' => 500,
+        ]);
     }
 
     /**

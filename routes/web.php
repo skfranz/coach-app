@@ -23,6 +23,7 @@ Route::get('/tags',  function() {
     return view('tagpage', ['tags' => Tag::where('complete_status', false)->get(), 'tasks' => Tag::where('complete_status', false)->get()]);
 })->name('tags.index');
 
+
 // Returns shop main page
 Route::get('/shoppage', function () {
     return view('shoppage');
@@ -30,23 +31,48 @@ Route::get('/shoppage', function () {
 
 // Returns font shop page with all font cosmetics
 Route::get('/fontshop', function () {
-    return view('fontshop', ['cosmetics' => Cosmetic::where('type', 'font')->get()]);
+    return view('fontshop', ['cosmetics' => Cosmetic::where([['type', 'font'], ['purchased_status', false]])->get()]);
 })->name('fontshop.index');
 
 // Returns text color shop page with all text color cosmetics
 Route::get('/textcolorshop', function () {
-    return view('textcolorshop', ['cosmetics' => Cosmetic::where('type', 'textcolor')->get()]);
+    return view('textcolorshop', ['cosmetics' => Cosmetic::where([['type', 'textcolor'], ['purchased_status', false]])->get()]);
 })->name('textcolorshop.index');
 
 // Returns background shop page with all background cosmetics
 Route::get('/backgroundshop', function () {
-    return view('backgroundshop', ['cosmetics' => Cosmetic::where('type', 'background')->get()]);
+    return view('backgroundshop', ['cosmetics' => Cosmetic::where([['type', 'background'], ['purchased_status', false]])->get()]);
 })->name('backgroundshop.index');
 
 // Returns coach shop page with all coach cosmetics
 Route::get('/coachshop', function () {
-    return view('coachshop', ['cosmetics' => Cosmetic::where('type', 'coach')->get()]);
+    return view('coachshop', ['cosmetics' => Cosmetic::where([['type', 'coach'], ['purchased_status', false]])->get()]);
 })->name('coachshop.index');
+
+// Returns inventory main page
+Route::get('/inventorypage', function () {
+    return view('inventorypage');
+})->name('inventorypage.index');
+
+// Returns font shop inventory with all owned font cosmetics
+Route::get('/fontinv', function () {
+    return view('fontinv', ['cosmetics' => Cosmetic::where([['type', 'font'], ['purchased_status', true]])->get()]);
+})->name('fontinv.index');
+
+// Returns text color inventory page with all owned text color cosmetics
+Route::get('/textcolorinv', function () {
+    return view('textcolorinv', ['cosmetics' => Cosmetic::where([['type', 'textcolor'], ['purchased_status', true]])->get()]);
+})->name('textcolorinv.index');
+
+// Returns background inventory page with all owned background cosmetics
+Route::get('/backgroundinv', function () {
+    return view('backgroundinv', ['cosmetics' => Cosmetic::where([['type', 'background'], ['purchased_status', true]])->get()]);
+})->name('backgroundinv.index');
+
+// Returns coach inventory page with all owned coach cosmetics
+Route::get('/coachinv', function () {
+    return view('coachinv', ['cosmetics' => Cosmetic::where([['type', 'coach'], ['purchased_status', true]])->get()]);
+})->name('coachinv.index');
 
 Route::resource('tasks.subtasks', SubtaskController::class);
 

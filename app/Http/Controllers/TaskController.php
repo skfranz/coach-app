@@ -106,4 +106,62 @@ class TaskController extends Controller
         $task->tags()->detach($tag);
         return back();
     }
+
+    // List incompleted tasks with optional sorting
+    public function index(Request $request)
+    {
+        $sort = $request->query('sort', 'default'); // options: default|name|difficulty|tags
+        $direction = strtolower($request->query('direction', 'asc')) === 'desc' ? 'desc' : 'asc';
+
+        // base query
+        $query = Task::where('complete_status', false)->with('tags');
+
+        // apply sorting with a whitelist for safe columns
+        if ($sort === 'name') {
+            $tasks = $query->orderBy('name', $direction)->get();
+        } elseif ($sort === 'difficulty') {
+            $tasks = $query->orderBy('difficulty', $direction)->get();
+        } elseif ($sort === 'tags') {
+            // load tasks with tags and sort by concatenated tag names
+            $tasks = $query->get()->sortBy(function ($task) {
+                return $task->tags->pluck('name')->join(',');
+            }, SORT_REGULAR, $direction === 'desc')->values();
+        } else {
+            // default = creation order
+            $tasks = $query->orderBy('created_at', $direction)->get();
+        }
+
+        $tags = Tag::where('complete_status', false)->get();
+
+        return view('taskpage', ['tasks' => $tasks, 'tags' => $tags]);
+    }
+
+    // List completed tasks with optional sorting
+    public function completed(Request $request)
+    {
+        $sort = $request->query('sort', 'default'); // options: default|name|difficulty|tags
+        $direction = strtolower($request->query('direction', 'asc')) === 'desc' ? 'desc' : 'asc';
+
+        // base query for completed tasks
+        $query = Task::where('complete_status', true)->with('tags');
+
+        // apply sorting with whitelist for direct columns
+        if ($sort === 'name') {
+            $tasks = $query->orderBy('name', $direction)->get();
+        } elseif ($sort === 'difficulty') {
+            $tasks = $query->orderBy('difficulty', $direction)->get();
+        } elseif ($sort === 'tags') {
+            // load tasks with tags and sort by concatenated tag names
+            $tasks = $query->get()->sortBy(function ($task) {
+                return $task->tags->pluck('name')->join(',');
+            }, SORT_REGULAR, $direction === 'desc')->values();
+        } else {
+            // default = creation order
+            $tasks = $query->orderBy('created_at', $direction)->get();
+        }
+
+        $tags = Tag::all();
+
+        return view('completed', ['tasks' => $tasks, 'tags' => $tags]);
+    }
 }

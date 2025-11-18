@@ -27,6 +27,26 @@ return new class extends Migration
             'type' => 'background',
             'price' => 500,
         ]);
+        Cosmetic::create([
+            'name' => 'blue',
+            'type' => 'background',
+            'price' => 500,
+        ]);
+        Cosmetic::create([
+            'name' => 'green',
+            'type' => 'background',
+            'price' => 500,
+        ]);
+        Cosmetic::create([
+            'name' => 'yellow',
+            'type' => 'background',
+            'price' => 500,
+        ]);
+        Cosmetic::create([
+            'name' => 'pink',
+            'type' => 'background',
+            'price' => 500,
+        ]);
     }
 
     /**

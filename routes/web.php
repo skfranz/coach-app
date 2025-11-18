@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\SubtaskController;
+use App\Http\Controllers\CosmeticController;
 use App\Models\Task;
 use App\Models\Tag;
 use App\Models\Cosmetic;
@@ -41,3 +42,5 @@ Route::delete('/tags/delete/{tag}', [TagController::class, 'delete'])->name('tag
 Route::patch('/tags/update/{tag}', [TagController::class, 'update'])->name('tags.update');
 Route::patch('/tags/complete/{tag}', [TagController::class, 'complete'])->name('tags.complete');
 Route::patch('/tags/detach/{tag}/{task}', [TagController::class, 'detach'])->name('tags.detach');
+
+Route::patch('/shop/buy/{cosmetic}', [CosmeticController::class, 'buy'])->name('cosmetics.buy');

@@ -7,7 +7,7 @@
 </head>
 
 
-<body>
+<body style="background-color: {{ App\Models\User::find(1)->current_background }}">
     <h2>{{ $header }}</h2>
     <p>{{ App\Models\User::find(1)->total_coins }} coins</p>
 

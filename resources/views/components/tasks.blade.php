@@ -30,7 +30,7 @@
         @foreach ($task->subtasks as $subtask)
             <div style="display:flex; gap: 10px;">
                 <form action="{{ route('tasks.subtasks.update', [$task, $subtask]) }}" method="POST">
-                    @csrf <!-- Cross-Site Request Forgery, not sure if necessary -->
+                    @csrf
                     @method('PATCH')
                     <input type="checkbox" name="complete_status" value="1"
                         onchange="this.form.submit()" {{ $subtask->complete_status ? 'checked' : '' }}>
@@ -97,7 +97,7 @@
 
 @if (request()->is('/')) <!--If on completed page, don't show Create New Task form-->
 
-    <br><h4>Create New Task:</h4> <!--Create Form-->
+    <h4>Create New Task:</h4> <!--Create Form-->
     <form action="{{ route('tasks.create') }}" method="POST"> <!--Send create/post request to create route in web.php, which goes to create function in TaskController-->
         @csrf
         Name: <input name="name"></input>

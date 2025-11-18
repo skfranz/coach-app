@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        User::firstOrCreate([       // Create a default user/gamestate
+        User::create([       // Create a default user/gamestate
             'name' => 'default',
             'total_coins' => 0,
         ]);

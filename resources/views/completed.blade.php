@@ -108,10 +108,10 @@
                     @endforeach
                 </select>
                 Difficulty: <select name="difficulty">
-                    <option value="Easy">Easy</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Hard">Hard</option>
-                    <option value="Very Hard">Very Hard</option>
+                    <option value="Easy" @selected($task->difficulty == 'Easy')>Easy</option>
+                    <option value="Medium" @selected($task->difficulty == 'Medium')>Medium</option>
+                    <option value="Hard" @selected($task->difficulty == 'Hard')>Hard</option>
+                    <option value="Very Hard" @selected($task->difficulty == 'Very Hard')>Very Hard</option>
                 </select>
                 Repeats: <select name="repeats">
                     <option value="0" @selected($task->repeats == 0)>No</option>
@@ -131,6 +131,7 @@
         <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-bottom: 20px">
             
             <div style="display:flex; float:right; margin-top: 10px; gap:10px;">
+                @isset($task->completed_at)<p>Completed at: {{ $task->completed_at }}</p>@endisset <!--Show Task Description (if there is one)-->
 
                 <!--Delete Form-->
                 <form action="{{ route('tags.delete', $tag) }}" method="POST"> <!--Send delete request to delete route in web.php, which goes to delete function in TagController-->

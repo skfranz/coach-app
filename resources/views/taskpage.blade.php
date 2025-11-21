@@ -125,10 +125,10 @@
                     @endforeach
                 </select>
                 Difficulty: <select name="difficulty">
-                    <option value="Easy">Easy</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Hard">Hard</option>
-                    <option value="Very Hard">Very Hard</option>
+                    <option value="Easy" @selected($task->difficulty == 'Easy')>Easy</option>
+                    <option value="Medium" @selected($task->difficulty == 'Medium')>Medium</option>
+                    <option value="Hard" @selected($task->difficulty == 'Hard')>Hard</option>
+                    <option value="Very Hard" @selected($task->difficulty == 'Very Hard')>Very Hard</option>
                 </select>
                 Repeats: <select name="repeats">
                     <option value="0" @selected($task->repeats == 0)>No</option>

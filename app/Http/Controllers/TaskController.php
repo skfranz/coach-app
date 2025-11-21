@@ -95,6 +95,8 @@ class TaskController extends Controller
     // Changes the Task's 'complete_status' - Used to complete a task or "undo" a completed task
     public function complete(Task $task) {
         $task->update(['complete_status' => !$task->complete_status]); // Update complete_status to the opposite of what it was
+        $task->update(['completed_at' => date(DATE_ATOM)]); // Update completed_at to the current DATE_ATOM timestamp
+
 
         $action = $task->complete_status ? "completing_task" : "uncompleting_task"; // determine whether the task is being completed or undone
         $line = $this->coachLine($action, $task);

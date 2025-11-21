@@ -8,15 +8,11 @@ use App\Models\Task;
 use App\Models\Tag;
 use App\Models\Cosmetic;
 
-// Returns webpage with all tasks (that haven't been completed)
-Route::get('/', function (){
-    return view('taskpage', ['tasks' => Task::where('complete_status', false)->get(), 'tags' => Tag::where('complete_status', false)->get()]);
-})->name('tasks.index');
+// Returns webpage with all tasks (that haven't been completed) and supports sorting
+Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
 
-// Returns webpage with all completed tasks/tags
-Route::get('/completed', function (){
-    return view('completed', ['tasks' => Task::where('complete_status', true)->get(), 'tags' => Tag::all()]);
-})->name('completed.index');
+// Returns webpage with all completed tasks/tags and supports sorting (same options as the main page)
+Route::get('/completed', [TaskController::class, 'completed'])->name('completed.index');
 
 // Show all (incompleted) tags
 Route::get('/tags',  function() {

@@ -83,6 +83,8 @@
             <p style="font-weight: bold;">{{ $task->name }}</p>
             @isset($task->description)<p>Description: {{ $task->description }}</p>@endisset <!--Show Task Description (if there is one)-->
 
+            <!--@isset($task->completed_at)<p>Completed at: {{ $task->completed_at }}</p>@endisset Show Task Completion Time (if it exists) -->
+
             <!--Show Associated Tags-->
             @foreach ($task->tags as $tag)
                 <div style="display: inline-block; border-style: solid; padding: 5px 5px; margin-bottom: 20px">
@@ -108,10 +110,10 @@
                     @endforeach
                 </select>
                 Difficulty: <select name="difficulty">
-                    <option value="Easy">Easy</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Hard">Hard</option>
-                    <option value="Very Hard">Very Hard</option>
+                    <option value="Easy" @selected($task->difficulty == 'Easy')>Easy</option>
+                    <option value="Medium" @selected($task->difficulty == 'Medium')>Medium</option>
+                    <option value="Hard" @selected($task->difficulty == 'Hard')>Hard</option>
+                    <option value="Very Hard" @selected($task->difficulty == 'Very Hard')>Very Hard</option>
                 </select>
                 Repeats: <select name="repeats">
                     <option value="0" @selected($task->repeats == 0)>No</option>
@@ -185,6 +187,7 @@
     </div>
 
     <script> 
+        // attempt to load the coach when ready
         const coach = document.getElementById('coach');
         coach.style.display = 'inline';
 
@@ -194,8 +197,8 @@
             // if (!bubble) return;
             bubble.textContent = text;
             bubble.classList.remove('hidden');
-            // clearTimeout(window.__coachHideTimer);
-            // window.__coachHideTimer = setTimeout(() => bubble.classList.add('hidden'), ms);
+            clearTimeout(window.__coachHideTimer);
+            window.__coachHideTimer = setTimeout(() => bubble.classList.add('hidden'), ms);
         }
 
         // call coachMessage if the page reloaded with a coach msg
@@ -205,11 +208,12 @@
         // pick and display an idle message for the coach to say
         function idleMessage() {
             const lines = [
-                "What are you waiting for?",
+                "Get back to the Tasks page!",
                 "Seize the day!",
                 "I sure hope you're working on those tasks.",
                 "Don't put the pro in procrastination.",
-                "Task 1. Hurry up!"
+                "Task 1. Hurry up!",
+                "You can admire your trophies when the work is done!"
             ]
             coachMessage(lines[Math.floor(Math.random() * lines.length)], 5000);
         }

@@ -14,7 +14,17 @@ class Task extends Model
         'difficulty',
         'coin_value',
         'complete_status',
+        'completed_at',
         'repeats'
+    ];
+
+    /**
+     * Casts
+     *
+     * Ensure completed_at is treated as a Carbon datetime object
+     */
+    protected $casts = [
+        'completed_at' => 'datetime',
     ];
 
     // Tasks have a many-to-many relationship with tags

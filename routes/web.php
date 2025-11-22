@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\SubtaskController;
+use App\Http\Controllers\CalendarController;
 use App\Models\Task;
 use App\Models\Tag;
 use App\Models\Cosmetic;
@@ -13,6 +14,9 @@ Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
 
 // Returns webpage with all completed tasks/tags and supports sorting (same options as the main page)
 Route::get('/completed', [TaskController::class, 'completed'])->name('completed.index');
+
+// Calendar view for completed tasks (month grid)
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
 
 // Show all (incompleted) tags
 Route::get('/tags',  function() {

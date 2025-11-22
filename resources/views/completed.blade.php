@@ -83,7 +83,7 @@
             <p style="font-weight: bold;">{{ $task->name }}</p>
             @isset($task->description)<p>Description: {{ $task->description }}</p>@endisset <!--Show Task Description (if there is one)-->
 
-            @isset($task->completed_at)<p>Completed at: {{ $task->completed_at }}</p>@endisset <!--Show Task Completion Time (if it exists) -->
+            <!--@isset($task->completed_at)<p>Completed at: {{ $task->completed_at }}</p>@endisset Show Task Completion Time (if it exists) -->
 
             <!--Show Associated Tags-->
             @foreach ($task->tags as $tag)

@@ -185,17 +185,6 @@
     @endif
 
     <script>
-        // send a request to the server to reload the page with a sort applied
-        function sortRequest() {
-            const sort_type = document.getElementById('sort_type').selectedOptions[0].value;
-            if (sort_type) {
-                console.log(sort_type);
-                route()
-            }
-
-        }
-
-
         // attempt to load the coach when ready
         const coach = document.getElementById('coach');
         coach.style.display = 'inline';

@@ -10,7 +10,7 @@ use App\Services\CoachService;
 class TaskController extends Controller
 {
     private CoachService $coach;
-    private string $coachName = 'Goat'; // hard coded for now, we can add requests to change it for this user later, I guess
+    private string $coachName = 'Goat'; // specify which coach to use, should change to currently selected one later
 
     public function __construct(CoachService $coach)
     {
@@ -74,6 +74,7 @@ class TaskController extends Controller
                 'repeats' => ['nullable']
             ]);
 
+        // map difficulty to coin value for each task
         if ($data['difficulty'] == 'Easy') {
             $data['coin_value'] = 50;
         } elseif ($data['difficulty'] == 'Medium') {
@@ -95,8 +96,9 @@ class TaskController extends Controller
     // Changes the Task's 'complete_status' - Used to complete a task or "undo" a completed task
     public function complete(Task $task) {
         $task->update(['complete_status' => !$task->complete_status]); // Update complete_status to the opposite of what it was
+        
+        date_default_timezone_set('America/Chicago'); // set default timezone to US Central
         $task->update(['completed_at' => date(DATE_ATOM)]); // Update completed_at to the current DATE_ATOM timestamp
-
 
         $action = $task->complete_status ? "completing_task" : "uncompleting_task"; // determine whether the task is being completed or undone
         $line = $this->coachLine($action, $task);

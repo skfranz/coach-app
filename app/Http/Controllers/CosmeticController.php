@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cosmetic;
-use App\Models\User;
+use App\Models\Gamestate;
 
 class CosmeticController extends Controller
 {
     public function buy(Cosmetic $cosmetic) {
 
-        $user = User::find(1); // When multiple users are implemented, use user->auth()
+        $gamestate = Gamestate::find(1);
         
-        if ($user->total_coins >= $cosmetic->price) {
-            $user->update(['total_coins' => $user->total_coins -= $cosmetic->price]);
+        if ($gamestate->total_coins >= $cosmetic->price) {
+            $gamestate->update(['total_coins' => $gamestate->total_coins -= $cosmetic->price]);
             $cosmetic->update(['purchased_status' => true]);
-            $user->update(['current_background' => $cosmetic->name]);
+            $gamestate->update(['current_background' => $cosmetic->name]);
         }
 
         return redirect()->route('shop.index');

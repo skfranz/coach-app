@@ -15,19 +15,12 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('total_coins')->default(0);
-            $table->string('current_background')->nullable();
-            //$table->string('email')->unique();
-            //$table->timestamp('email_verified_at')->nullable();
-            //$table->string('password');
-            //$table->rememberToken();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
-
-        User::create([       // Create a default user/gamestate
-            'name' => 'default',
-            'total_coins' => 0,
-        ]);
             
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

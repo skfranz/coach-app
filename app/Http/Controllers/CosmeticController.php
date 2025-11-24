@@ -16,7 +16,7 @@ class CosmeticController extends Controller
         if ($gamestate->total_coins >= $cosmetic->price) { // If user has enough coins to buy cosmetic
             $gamestate->update(['total_coins' => $gamestate->total_coins -= $cosmetic->price]); // Subtract coins
             $cosmetic->update(['purchased_status' => true]); // Mark cosmetic as purchased
-            $gamestate->update(['current_background' => $cosmetic->name]);  
+            $gamestate->update(['current_background' => $cosmetic->asset]);  
         }
 
         return redirect()->route('shop.index');
@@ -26,7 +26,7 @@ class CosmeticController extends Controller
         
         $gamestate = Gamestate::find(1);
 
-        $gamestate->update(['current_background' => $cosmetic->name]);
+        $gamestate->update(['current_background' => $cosmetic->asset]);
 
         return redirect()->route('options.index');
     }

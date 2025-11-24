@@ -11,7 +11,7 @@ class Cosmetic extends Model
     protected $fillable = [ // Determines which variables/columns are creatable
         'name',
         'type',
-        'description',
+        'asset',
         'price',
         'purchased_status',
     ];

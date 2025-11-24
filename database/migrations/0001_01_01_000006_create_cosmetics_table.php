@@ -16,37 +16,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
-            $table->string('description')->nullable();
+            $table->string('asset')->nullable();
             $table->integer('price');
             $table->boolean('purchased_status')->default(0);
             $table->timestamps();
         });
-
-        Cosmetic::create([
-            'name' => 'red',
-            'type' => 'background',
-            'price' => 500,
-        ]);
-        Cosmetic::create([
-            'name' => 'blue',
-            'type' => 'background',
-            'price' => 500,
-        ]);
-        Cosmetic::create([
-            'name' => 'green',
-            'type' => 'background',
-            'price' => 500,
-        ]);
-        Cosmetic::create([
-            'name' => 'yellow',
-            'type' => 'background',
-            'price' => 500,
-        ]);
-        Cosmetic::create([
-            'name' => 'pink',
-            'type' => 'background',
-            'price' => 500,
-        ]);
     }
 
     /**

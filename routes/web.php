@@ -26,7 +26,7 @@ Route::get('/tags',  function() {
 
 // Returns shop main page
 Route::get('/shop', function () {
-    return view('shop', ['cosmetics' => Cosmetic::all()]);
+    return view('shop', ['cosmetics' => Cosmetic::where('purchased_status', false)->get()]);
 })->name('shop.index');
 
 // Returns options/customizations page with bought cosmetics

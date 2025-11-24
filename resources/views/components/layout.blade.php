@@ -74,6 +74,10 @@
 </style>
 
 <script>
+    // attempt to load the coach when ready
+    const coach = document.getElementById('coach');
+    coach.style.display = 'inline';
+
     // display a message below the coach for an interval (default 4s)
     function coachMessage(text, ms = 4000) {
         const bubble = document.getElementById('coach-bubble');
@@ -97,7 +101,7 @@
             "Don't put the pro in procrastination.",
             "Task 1. Hurry up!"
         ]
-        coachMessage(lines[Math.floor(Math.random() * lines.length)], 5);
+        coachMessage(lines[Math.floor(Math.random() * lines.length)], 5000);
     }
 
     setInterval(() => {

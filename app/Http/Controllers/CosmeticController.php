@@ -18,6 +18,10 @@ class CosmeticController extends Controller
             $cosmetic->update(['purchased_status' => true]); // Mark cosmetic as purchased
             $gamestate->update(['current_background' => $cosmetic->asset]);  
         }
+        else { // If user doesn't have enough coins, return error message stating the amount needed
+            $needed_coins = $cosmetic->price - $gamestate->total_coins;
+            return redirect()->route('shop.index')->withErrors(['cost' => "Need {$needed_coins} more coins to purchase"]);
+        }
 
         return redirect()->route('shop.index');
     }

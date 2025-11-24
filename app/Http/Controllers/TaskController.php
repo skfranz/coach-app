@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Tag;
 use App\Services\CoachService;
+use App\Models\Gamestate;
 
 class TaskController extends Controller
 {
@@ -43,6 +44,7 @@ class TaskController extends Controller
         } elseif ($data['difficulty'] == 'Very Hard') {
             $data['coin_value'] = 200;
         }
+      
         $task = Task::create($data);    // If successful, create new item with form data
         $tags = request('tags');        // Get tag ids from tag input box
         $task->tags()->attach($tags);   // Attach tag ids to task-tag Eloquent relationship, updating pivot table task_tag
@@ -95,6 +97,17 @@ class TaskController extends Controller
     // Changes the Task's 'complete_status' - Used to complete a task or "undo" a completed task
     public function complete(Task $task) {
         $task->update(['complete_status' => !$task->complete_status]); // Update complete_status to the opposite of what it was
+
+        $gamestate = Gamestate::find(1);
+        
+        if ($task->complete_status) { // When completing a task, add the task's coins to user's total amount
+            $gamestate->update(['total_coins' => $gamestate->total_coins += $task->coin_value]);
+        }
+        else { // When undoing a completed task, subtract task's coins from user's total amount
+            $subtract = $gamestate->total_coins -= $task->coin_value;
+            $end_coins = ($subtract >= 0) ? $subtract : 0; // if user's coins is 0, return 0 (don't return negative)
+            $gamestate->update(['total_coins' => $end_coins]);
+        }
 
         $action = $task->complete_status ? "completing_task" : "uncompleting_task"; // determine whether the task is being completed or undone
         $line = $this->coachLine($action, $task);

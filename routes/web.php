@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\SubtaskController;
+use App\Http\Controllers\CosmeticController;
 use App\Models\Task;
 use App\Models\Tag;
 use App\Models\Cosmetic;
@@ -24,29 +25,14 @@ Route::get('/tags',  function() {
 })->name('tags.index');
 
 // Returns shop main page
-Route::get('/shoppage', function () {
-    return view('shoppage');
-})->name('shoppage.index');
+Route::get('/shop', function () {
+    return view('shop', ['cosmetics' => Cosmetic::where('purchased_status', false)->get()]);
+})->name('shop.index');
 
-// Returns font shop page with all font cosmetics
-Route::get('/fontshop', function () {
-    return view('fontshop', ['cosmetics' => Cosmetic::where('type', 'font')->get()]);
-})->name('fontshop.index');
-
-// Returns text color shop page with all text color cosmetics
-Route::get('/textcolorshop', function () {
-    return view('textcolorshop', ['cosmetics' => Cosmetic::where('type', 'textcolor')->get()]);
-})->name('textcolorshop.index');
-
-// Returns background shop page with all background cosmetics
-Route::get('/backgroundshop', function () {
-    return view('backgroundshop', ['cosmetics' => Cosmetic::where('type', 'background')->get()]);
-})->name('backgroundshop.index');
-
-// Returns coach shop page with all coach cosmetics
-Route::get('/coachshop', function () {
-    return view('coachshop', ['cosmetics' => Cosmetic::where('type', 'coach')->get()]);
-})->name('coachshop.index');
+// Returns options/customizations page with bought cosmetics
+Route::get('/options', function () {
+    return view('options', ['cosmetics' => Cosmetic::where('purchased_status', true)->get()]);
+})->name('options.index');
 
 Route::resource('tasks.subtasks', SubtaskController::class);
 
@@ -61,3 +47,6 @@ Route::delete('/tags/delete/{tag}', [TagController::class, 'delete'])->name('tag
 Route::patch('/tags/update/{tag}', [TagController::class, 'update'])->name('tags.update');
 Route::patch('/tags/complete/{tag}', [TagController::class, 'complete'])->name('tags.complete');
 Route::patch('/tags/detach/{tag}/{task}', [TagController::class, 'detach'])->name('tags.detach');
+
+Route::patch('/shop/buy/{cosmetic}', [CosmeticController::class, 'buy'])->name('cosmetics.buy');
+Route::patch('/options/equip/{cosmetic}', [CosmeticController::class, 'equip'])->name('cosmetics.equip');

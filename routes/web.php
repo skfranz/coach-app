@@ -26,8 +26,13 @@ Route::get('/tags',  function() {
 
 // Returns shop main page
 Route::get('/shop', function () {
-    return view('shoppage', ['cosmetics' => Cosmetic::all()]);
+    return view('shop', ['cosmetics' => Cosmetic::all()]);
 })->name('shop.index');
+
+// Returns options/customizations page with bought cosmetics
+Route::get('/options', function () {
+    return view('options', ['cosmetics' => Cosmetic::where('purchased_status', true)->get()]);
+})->name('options.index');
 
 Route::resource('tasks.subtasks', SubtaskController::class);
 
@@ -44,3 +49,4 @@ Route::patch('/tags/complete/{tag}', [TagController::class, 'complete'])->name('
 Route::patch('/tags/detach/{tag}/{task}', [TagController::class, 'detach'])->name('tags.detach');
 
 Route::patch('/shop/buy/{cosmetic}', [CosmeticController::class, 'buy'])->name('cosmetics.buy');
+Route::patch('/options/equip/{cosmetic}', [CosmeticController::class, 'equip'])->name('cosmetics.equip');

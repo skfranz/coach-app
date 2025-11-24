@@ -16,7 +16,7 @@ return new class extends Migration
 
         foreach ($colors as $color) {
             Cosmetic::create([
-                'name' => preg_replace('/(?<!\ )[A-Z]/', ' $0', $color),
+                'name' => preg_replace('/(?<! )(?<!^)[A-Z]/', ' $0', $color),
                 'type' => 'background',
                 'asset' => $color,
                 'price' => 500,
@@ -24,8 +24,8 @@ return new class extends Migration
             ]);
         }
 
-        $default = Cosmetic::where('name', 'White');
-        $default->update(['price' => 0, 'purchased_status' => 1]);
+        Cosmetic::where('name', 'White')->update(['price' => 0, 'purchased_status' => 1]);
+        
     }
 
     /**

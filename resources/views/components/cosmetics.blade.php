@@ -1,5 +1,6 @@
 @foreach($cosmetics as $cosmetic)
-    <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-top: 20px">
+
+    <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-top: 20px; margin-right: 10px;">
 
         <div style="display:flex; float:right; margin-top: 10px; gap:10px;">
 
@@ -25,5 +26,9 @@
         <p>Price: {{ $cosmetic->price }} coins</p>
 
     </div>
-    <br>
+
+    @if ($loop->iteration % 5 == 0) <!--For every 5 items, create a new line (so it's like a grid)-->
+        <br>
+    @endif
+
 @endforeach

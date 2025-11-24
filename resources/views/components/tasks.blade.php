@@ -2,7 +2,7 @@
 @foreach ($tasks as $task)
     <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-bottom: 20px">
 
-        <div style="display:flex; float:right; margin-top: 10px; gap:10px;">
+        <div style="display:flex; float:right; margin-top:10px; gap:10px;">
 
             <form action="{{ route('tasks.delete', $task) }}" method="POST"> <!--Send delete request to delete route in web.php, which goes to delete function in TaskController-->
                 @method('DELETE')   <!--Specify request method is "DELETE"-->

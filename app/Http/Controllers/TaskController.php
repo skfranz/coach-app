@@ -104,7 +104,9 @@ class TaskController extends Controller
             $gamestate->update(['total_coins' => $gamestate->total_coins += $task->coin_value]);
         }
         else { // When undoing a completed task, subtract task's coins from user's total amount
-            $gamestate->update(['total_coins' => $gamestate->total_coins -= $task->coin_value]);
+            $subtract = $gamestate->total_coins -= $task->coin_value;
+            $end_coins = ($subtract >= 0) ? $subtract : 0; // if user's coins is 0, return 0 (don't return negative)
+            $gamestate->update(['total_coins' => $end_coins]);
         }
 
         $action = $task->complete_status ? "completing_task" : "uncompleting_task"; // determine whether the task is being completed or undone

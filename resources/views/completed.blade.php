@@ -1,50 +1,6 @@
 <x-layout title="Completed Tasks/Tags Page" header="Completed Tasks/Tags:">
 
-<style>
-  /* Coach fixed top-right */
-  #coach {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  /* Speech bubble under coach */
-  #coach-bubble {
-    background: #fff;
-    border: 2px solid #444;
-    border-radius: 12px;
-    padding: 10px 14px;
-    max-width: 444px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    text-align: center;
-    font-family: system-ui, sans-serif;
-    font-size: 18px;
-    line-height: 1.3;
-    position: relative;
-  }
-
-  /* Little tail pointing upward to coach */
-  #coach-bubble::before {
-    content: "";
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 0 8px 8px 8px;
-    border-style: solid;
-    border-color: transparent transparent #444 transparent;
-  }
-
-  .hidden { display: none; }
-</style>
-
-    <h4>
-        <!--Two drop downs that will change the request whenever they are changed for sorting purposes-->
+    <h4> <!--Two drop downs that will change the request whenever they are changed for sorting purposes-->
     <form id="sortForm" method="GET" action="{{ route('completed.index') }}" class="inline-form">
             <label for="sort">Sort By: </label>
             <select name="sort" id="sort" onchange="this.form.submit()">
@@ -60,71 +16,9 @@
             </select>
         </form>
     </h4>
-    <!--Displays each task in its own div/box-->
-    @foreach ($tasks as $task)
-        <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-bottom: 20px">
 
-            <div style="display:flex; float:right; margin-top: 10px; gap:10px;">
-
-                <form action="{{ route('tasks.delete', $task) }}" method="POST"> <!--Send delete request to delete route in web.php, which goes to delete function in TaskController-->
-                    @method('DELETE')   <!--Specify request method is "DELETE"-->
-                    @csrf               <!--Form Security token submission-->
-                    <button type="submit" onclick="return confirm('Are you sure you want to delete this task?');">Delete</button>
-                </form>
-
-                <!--Complete Form-->
-                <form action="{{ route('tasks.complete', $task) }}" method="POST">
-                    @method('PATCH')
-                    @csrf
-                    <button type="submit">Undo Complete</button>
-                </form>
-            </div>
-            
-            <p style="font-weight: bold;">{{ $task->name }}</p>
-            @isset($task->description)<p>Description: {{ $task->description }}</p>@endisset <!--Show Task Description (if there is one)-->
-
-            <!--@isset($task->completed_at)<p>Completed at: {{ $task->completed_at }}</p>@endisset Show Task Completion Time (if it exists) -->
-
-            <!--Show Associated Tags-->
-            @foreach ($task->tags as $tag)
-                <div style="display: inline-block; border-style: solid; padding: 5px 5px; margin-bottom: 20px">
-                    <div style="display:flex; gap: 5px;"> {{ $tag->name }}
-                        <form action="{{ route('tasks.detach', [$task, $tag]) }}" method="POST">
-                            @method('PATCH')
-                            @csrf
-                            <button type="submit">X</button>
-                        </form>
-                    </div>
-                </div>
-            @endforeach
-
-            <!--Update Form-->
-            <form action="{{ route('tasks.update', $task) }}" method="POST">
-                @method('PATCH')
-                @csrf
-                Name: <input name="name" value="{{ $task->name }}"></input>
-                Description: <input name="description" value="{{ $task->description}}"></input>
-                <select name="tags[]" multiple> <!--Multi-select input needs [] in form name-->
-                    @foreach ($tags as $tag)
-                        <option value="{{ $tag->id }}" @selected($task->tags->find($tag))>{{ $tag->name }}</option> <!--If tag already exists, select it in box-->
-                    @endforeach
-                </select>
-                Difficulty: <select name="difficulty">
-                    <option value="Easy" @selected($task->difficulty == 'Easy')>Easy</option>
-                    <option value="Medium" @selected($task->difficulty == 'Medium')>Medium</option>
-                    <option value="Hard" @selected($task->difficulty == 'Hard')>Hard</option>
-                    <option value="Very Hard" @selected($task->difficulty == 'Very Hard')>Very Hard</option>
-                </select>
-                Repeats: <select name="repeats">
-                    <option value="0" @selected($task->repeats == 0)>No</option>
-                    <option value="1" @selected($task->repeats == 1)>Yes</option>
-                </select>
-                <button type="submit">Update</button>
-            </form>
-
-        </div>
-        <br>
-    @endforeach
+    <h4>Past Tasks:</h4>
+    <x-tasks :tasks="$tasks" :tags="$tags"></x-tasks>
 
     <h4>Past Tags:</h4>
     <!--Displays each tag in its own div/box-->

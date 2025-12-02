@@ -80,7 +80,7 @@
         <div id="coach-bubble" class="hidden" width="444">Hello there! Ready to work?</div>
     </div>
 
-    <script> 
+    <script>
         // attempt to load the coach when ready
         const coach = document.getElementById('coach');
         coach.style.display = 'inline';
@@ -115,7 +115,8 @@
         // give the coach an idle msg every 20s
         setInterval(() => {
             idleMessage();
-        }, 20000);
+        }, 10000);
+
     </script>
     
 </x-layout>

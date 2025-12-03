@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: Tasks table
+Description: Holds user data regarding each task that has been created by the user. Fields include name, description, difficulty, coin value, whether or not the task is completed and if it repeats
+Input: None.
+Output: The aforementioned database table.
+*/
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

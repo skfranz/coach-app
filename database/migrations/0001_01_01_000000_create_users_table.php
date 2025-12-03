@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: 0001_01_01_000000_create_users_table.php
+Description: Creates a users database table with fields: id, name, total_coins, and current_background
+Input: None
+Output: Users database table with the mentioned fields
+*/
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +28,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-            
+
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');

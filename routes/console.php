@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: Console.php
+Description: Declares a console command for use in having repeating tasks
+Input: None
+Output: None
+*/
+
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;

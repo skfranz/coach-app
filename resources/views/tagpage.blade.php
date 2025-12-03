@@ -1,9 +1,16 @@
+<!--
+Program Name: Tag management page
+Description: Allows users to create and manage tags to group multiple tasks.
+Input: Task table, Tag table, user input (add/complete/delete/update)
+Output: A webpage displaying the tags a user has created and the tasks that the user is displaying inside that tag.
+-->
+
 <x-layout title="Tags Page" header="Tags:">
 
     <!--Displays each tag in its own div/box-->
     @foreach ($tags as $tag)
         <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-top: 20px">
-            
+
             <div style="display:flex; float:right; margin-top: 10px; gap:10px;">
 
                 <!--Delete Form-->
@@ -20,7 +27,7 @@
                     <button type="submit">Complete</button>
                 </form>
             </div>
-            
+
             <p style="font-weight: bold;">{{ $tag->name }}</p> <!--Show Tag Name-->
             @isset($tag->description)<p>Description: {{ $tag->description }}</p>@endisset <!--Show Tag Description (if there is one)-->
 
@@ -66,7 +73,7 @@
         <div id="coach-bubble" class="hidden" width="444">Hello there! Ready to work?</div>
     </div>
 
-    <script> 
+    <script>
         // attempt to load the coach when ready
         const coach = document.getElementById('coach');
         coach.style.display = 'inline';

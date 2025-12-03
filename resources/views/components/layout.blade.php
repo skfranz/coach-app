@@ -1,3 +1,10 @@
+<!--
+Program Name: layout.blade.php
+Description: Creates a basic layout for webpages, used by all non-component view files
+Input: Title and header for the selected page
+Output: Display of Webpage with navigation bar containing the links to the other webpages and a window for the coach on the right half of the screen
+-->
+
 <!DOCTYPE html>
 <html>
 

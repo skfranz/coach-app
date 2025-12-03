@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: 0001_01_01_000006_create_cosmetics_table.php
+Description: Creates a cosmetics database table with fields: id, name, type, description, price, and purchased_status, creates a few example entries in the table
+Input: None
+Output: Cosmetics database table with the mentioned fields, example entries in the table
+*/
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

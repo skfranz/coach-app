@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: Tags table
+Description: Holds user data regarding each tag created by the user. Fields include name, description and whether or not the tag is completed.
+Input: None
+Output: The aforementioned database table.
+*/
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

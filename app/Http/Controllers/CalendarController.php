@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: CalendarController.php
+Description: Creates a calendar
+Input: None
+Output: Calendar showing completed tasks
+*/
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;

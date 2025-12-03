@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: SubtaskController.php
+Description: Defines functionality for user interaction with subtasks
+Input: Subtask model corresponding to an entry in the Subtasks database table
+Output: Functionality for storing, editing, and deleting subtasks
+*/
+
 namespace App\Http\Controllers;
 
 use App\Models\Task;

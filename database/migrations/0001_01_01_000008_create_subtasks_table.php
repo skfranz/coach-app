@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: 0001_01_01_000008_create_subtasks_table.php
+Description: Creates a subtasks database table with fields: id, task_id, description, and complete_status
+Input: None
+Output: Subtasks database table with the mentioned fields
+*/
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

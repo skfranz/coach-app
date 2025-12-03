@@ -1,3 +1,10 @@
+<!--
+Program Name: cosmetics.blade.php
+Description: Component used for displaying cosmetics on cosmetics page.
+Input: Cosmetics table.
+Output: Display of user's cosmetics that are available for purchase.
+-->
+
 @foreach($cosmetics as $cosmetic)
 
     <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-top: 20px; margin-right: 10px;">

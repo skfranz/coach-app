@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: Tag.php
+Description: Defines what fields of a Tag table entry are editable and defines tag-task relationship
+Input: None
+Output: Changeability of Subtask table entries and tag-task relationship
+*/
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;

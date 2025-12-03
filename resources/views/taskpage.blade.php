@@ -1,3 +1,10 @@
+<!--
+Program Name: Task page
+Description: Shows all tasks assigned by the user and allows for the user to manipulate tasks.
+Input: Task table, user input from forms (add/complete/delete/update)
+Output: A webpage displaying all to-do tasks that the user has assigned to themself.
+-->
+
 <x-layout title="Task Page" header="Tasks:">
     <br>
     <h4> <!--Two drop downs that will change the request whenever they are changed for sorting purposes-->

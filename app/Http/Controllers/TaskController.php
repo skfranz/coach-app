@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: TaskController.php
+Description: Defines functionality for user interaction with Tasks
+Input: Subtask model corresponding to an entry in the Tasks database table
+Output: Functionality for creating, editing, completing, sorting, and deleting tasks and detaching tags
+*/
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -44,7 +51,7 @@ class TaskController extends Controller
         } elseif ($data['difficulty'] == 'Very Hard') {
             $data['coin_value'] = 200;
         }
-      
+
         $task = Task::create($data);    // If successful, create new item with form data
         $tags = request('tags');        // Get tag ids from tag input box
         $task->tags()->attach($tags);   // Attach tag ids to task-tag Eloquent relationship, updating pivot table task_tag
@@ -98,12 +105,12 @@ class TaskController extends Controller
     // Changes the Task's 'complete_status' - Used to complete a task or "undo" a completed task
     public function complete(Task $task) {
         $task->update(['complete_status' => !$task->complete_status]); // Update complete_status to the opposite of what it was
-        
+
         date_default_timezone_set('America/Chicago'); // set default timezone to US Central
         $task->update(['completed_at' => date(DATE_ATOM)]); // Update completed_at to the current DATE_ATOM timestamp
 
         $gamestate = Gamestate::find(1);
-        
+
         if ($task->complete_status) { // When completing a task, add the task's coins to user's total amount
             $gamestate->update(['total_coins' => $gamestate->total_coins += $task->coin_value]);
         }

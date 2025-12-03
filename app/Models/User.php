@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: User.php
+Description: Defines what fields of a User table entry are creatable
+Input: None
+Output: Changeability of User table entries
+*/
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;

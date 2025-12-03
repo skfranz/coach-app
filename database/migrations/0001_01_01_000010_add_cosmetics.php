@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: 0001_01_01_000010_add_cosmetics.php
+Description: Add some preset cosmetic items to the cosmetics table
+Input: None
+Output: Populate cosmetics table with cosmetics
+*/
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

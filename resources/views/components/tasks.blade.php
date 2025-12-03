@@ -1,3 +1,10 @@
+<!--
+Program Name: tasks.blade.php
+Description: component used for displaying tasks and creating forms for interacting with tasks, used in tasks and completed tasks view files
+Input: list of tasks
+Output: list of tasks and forms to interact with the tasks database table
+-->
+
 <!--Displays each task in its own div/box-->
 @foreach ($tasks as $task)
     <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-bottom: 20px">
@@ -45,7 +52,7 @@
         @endforeach
 
         <br>
-        
+
         <!--Show Associated Tags-->
         @foreach ($task->tags as $tag)
             <div style="display: inline-block; border-style: solid; padding: 5px 5px; margin-bottom: 20px">
@@ -81,7 +88,7 @@
             Difficulty: <select name="difficulty">
                 <option value="Easy" @selected($task->difficulty == "Easy")>Easy</option>
                 <option value="Medium" @selected($task->difficulty == "Medium")>Medium</option>
-                <option value="Hard" @selected($task->difficulty == "Hard")>Hard</option> 
+                <option value="Hard" @selected($task->difficulty == "Hard")>Hard</option>
                 <option value="Very Hard" @selected($task->difficulty == "Very Hard")>Very Hard</option>
             </select>
             Repeats: <select name="repeats">

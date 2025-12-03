@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: 0001_01_01_000007_add_coach_to_users_table.php
+Description: Adds a coach field to the users table
+Input: None
+Output: Coach column added to users table
+*/
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

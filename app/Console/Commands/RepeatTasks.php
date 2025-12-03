@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: RepeatTasks.php
+Description: Defines console command that runs for creating repeatable tasks
+Input: None
+Output: Functionality for making repeatable tasks
+*/
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;

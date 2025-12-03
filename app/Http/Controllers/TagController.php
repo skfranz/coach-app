@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: TagController.php
+Description: Defines functionality for user interaction with tags
+Input: Subtask model corresponding to an entry in the Tags database table
+Output: Functionality for creating, editing, deleting, completing, and detaching tags
+*/
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;

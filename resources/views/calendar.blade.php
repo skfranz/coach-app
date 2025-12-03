@@ -1,3 +1,10 @@
+<!--
+Program Name: calendar.blade.php
+Description: Shows all calendar with tasks
+Input: Calendar from controller
+Output: A webpage showing a calendar with tasks
+-->
+
 <x-layout title="Calendar" header="Calendar">
 
 <style>

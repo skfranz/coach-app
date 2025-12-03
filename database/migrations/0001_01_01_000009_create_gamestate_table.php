@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: 0001_01_01_000009_create_gamestate_table.php
+Description: Creates a gamestate database table with fields: id, name, total_coins, and background_color
+Input: None
+Output: Gamestate database table with the mentioned fields
+*/
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

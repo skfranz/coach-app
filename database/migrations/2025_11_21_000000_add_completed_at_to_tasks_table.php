@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: 2025_11_21_000000_add_completed_at_to_tasks_table.php
+Description: Add completion date field to tasks table
+Input: None
+Output: Updated tasks table
+*/
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

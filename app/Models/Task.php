@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: Task.php
+Description: Defines what fields of a Task table entry are creatable/editable, defines task-tag and task-subtask relationships
+Input: None
+Output: Changeability of Task table entries and tag and subtask relationships
+*/
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -8,7 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Task extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'tasks'; // Assigns model to SQL table 'tasks'
 
     protected $fillable = [ // Determines which variables/columns are editable by the user

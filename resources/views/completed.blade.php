@@ -1,3 +1,10 @@
+<!--
+Program Name: Completed Task page
+Description: Shows all completed tasks (until cleared by user)
+Input: Task Model file
+Output: A webpage showing the tasks already completed by the user.
+-->
+
 <x-layout title="Completed Tasks/Tags Page" header="Completed Tasks/Tags:">
 
     <h4> <!--Two drop downs that will change the request whenever they are changed for sorting purposes-->
@@ -25,7 +32,7 @@
     @foreach ($tags as $tag)
         @if ($tag->complete_status == 1)
         <div style="display: inline-block; border-style: solid; padding: 0px 10px 10px; margin-bottom: 20px">
-            
+
             <div style="display:flex; float:right; margin-top: 10px; gap:10px;">
 
                 <!--Delete Form-->
@@ -42,7 +49,7 @@
                     <button type="submit">Undo Complete</button>
                 </form>
             </div>
-            
+
             <p style="font-weight: bold;">{{ $tag->name }}</p> <!--Show Tag Name-->
             @isset($tag->description)<p>Description: {{ $tag->description }}</p>@endisset <!--Show Tag Description (if there is one)-->
 
@@ -118,5 +125,5 @@
         }, 10000);
 
     </script>
-    
+
 </x-layout>

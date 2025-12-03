@@ -1,5 +1,12 @@
 <?php
 
+/*
+Program Name: Subtask.php
+Description: Defines what fields of a Subtask table entry are editable and defines subtask-task relationship
+Input: None
+Output: Changeability of Subtask table entries and subtask-parent relationship
+*/
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
